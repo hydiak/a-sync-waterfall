@@ -1,6 +1,6 @@
-# async-waterfall
+# js-waterfall
 
-Simple, isolated async waterfall module for JavaScript.
+Simple, isolated sync/async waterfall module for JavaScript.
 
 Runs an array of functions in series, each passing their results to the next in
 the array. However, if any of the functions pass an error to the callback, the
@@ -10,27 +10,25 @@ the error.
 For browsers and node.js.
 
 ## Installation
-* Just include async-waterfall before your scripts.
-* `npm install async-waterfall` if you’re using node.js.
-* `component install es128/async-waterfall` if you’re using
-[component(1)](https://github.com/component/component).
-* `bower install async-waterfall` if you’re using
-[Twitter Bower](http://bower.io).
+* Just include js-waterfall before your scripts.
+* `npm install js-waterfall` if you’re using node.js.
+
 
 ## Usage
 
-* `waterfall(tasks, optionalCallback);`
+* `waterfall(tasks, optionalCallback, syncFlag);`
 * **tasks** - An array of functions to run, each function is passed a
 `callback(err, result1, result2, ...)` it must call on completion. The first
 argument is an error (which can be null) and any further arguments will be
 passed as arguments in order to the next task.
 * **optionalCallback** - An optional callback to run once all the functions have
 completed. This will be passed the results of the last task's callback.
+* **syncFlag** An optional flag that force tasks run synchronously
 
 ##### Node.js:
 
 ```javascript
-var waterfall = require('async-waterfall');
+var waterfall = require('js-waterfall');
 waterfall(tasks, callback);
 ```
 
@@ -38,11 +36,11 @@ waterfall(tasks, callback);
 
 ```javascript
 // component(1)
-var waterfall = require('async-waterfall');
+var waterfall = require('js-waterfall');
 waterfall(tasks, callback);
 
 // Default:
-window.asyncWaterfall(tasks, callback);
+window.waterfall(tasks, callback);
 ```
 
 ##### Tasks as Array of Functions
@@ -95,4 +93,4 @@ based upon.
 
 
 ## License
-[MIT](https://raw.github.com/es128/async-waterfall/master/LICENSE)
+[MIT](https://raw.github.com/hydiak/js-waterfall/master/LICENSE)

@@ -2,7 +2,14 @@
 (function(globals) {
   'use strict';
 
-  var nextTick = function (fn) {
+  var executeSync = function(){
+    var args = Array.prototype.slice.call(arguments);
+    if (typeof args[0] === 'function'){
+      args[0].apply(null, args.splice(1));
+    }
+  };
+
+  var executeAsync = function(fn){
     if (typeof setImmediate === 'function') {
       setImmediate(fn);
     } else if (typeof process !== 'undefined' && process.nextTick) {
@@ -32,7 +39,8 @@
     return Object.prototype.toString.call(maybeArray) === '[object Array]';
   };
 
-  var waterfall = function (tasks, callback) {
+  var waterfall = function (tasks, callback, syncFlag) {
+    var nextTick = syncFlag ? executeSync : executeAsync;
     callback = callback || function () {};
     if (!_isArray(tasks)) {
       var err = new Error('First argument to waterfall must be an array of functions');
@@ -70,6 +78,6 @@
   } else if (typeof module !== 'undefined' && module.exports) {
     module.exports = waterfall; // CommonJS
   } else {
-    globals.asyncWaterfall = waterfall; // <script>
+    globals.waterfall = waterfall; // <script>
   }
 })(this);

@@ -29,17 +29,17 @@ var done = function(){
 }
 
 var testSync = function(){
-	waterfall(tasks, done, true);
-	console.log('this after waterfall');
+	waterfall(tasks, done);
+	console.log('this text should be after waterfall');
 
 };
 
 var testAsync = function(){
-	waterfall(tasks, done);
-	console.log('this before waterfall');
+	waterfall(tasks, done, true);
+	console.log('this text should be before waterfall');
 };
 
-console.log('testSync: \n');
+console.log('testSync:');
 testSync();
 
 console.log('\ntestAsync: ');

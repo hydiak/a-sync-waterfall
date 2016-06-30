@@ -39,8 +39,8 @@
     return Object.prototype.toString.call(maybeArray) === '[object Array]';
   };
 
-  var waterfall = function (tasks, callback, asyncFlag) {
-    var nextTick = asyncFlag ? executeAsync : executeSync;
+  var waterfall = function (tasks, callback, forceAsync) {
+    var nextTick = forceAsync ? executeAsync : executeSync;
     callback = callback || function () {};
     if (!_isArray(tasks)) {
       var err = new Error('First argument to waterfall must be an array of functions');

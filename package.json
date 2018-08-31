@@ -6,6 +6,7 @@
     "name": "Gleb Khudyakov",
     "url": "https://github.com/hydiak/a-sync-waterfall"
   },
+  "license": "MIT",
   "homepage": "https://github.com/hydiak/a-sync-waterfall",
   "repository": {
     "type": "git",
